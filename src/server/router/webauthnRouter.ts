@@ -131,7 +131,7 @@ webauthnRouter.post('/login/response', (req: Request, res: Response) => {
   if (
     !username || !id || !rawId || !response || !type || type !== 'public-key'
   ) {
-    res.sendStatus(400);
+    res.status(400).send('Invalid body');
     return;
   }
 
@@ -140,12 +140,12 @@ webauthnRouter.post('/login/response', (req: Request, res: Response) => {
   );
 
   if (clientData.challenge !== req.session.challenge) {
-    res.sendStatus(400);
+    res.status(400).send('Invalid challenge');
     return;
   }
 
   if (clientData.origin !== 'http://localhost:3000') {
-    res.sendStatus(400);
+    res.status(400).send('Invalid origin');
     return;
   }
 

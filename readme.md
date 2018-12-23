@@ -5,10 +5,22 @@
 $ yarn
 ```
 
+### Build
+
+```
+$ yarn build
+```
+
+### Start
+
+```
+$ yarn start
+```
+
 ### Develop
 
 ```
-$ npx rollup -c -w
+$ npx webpack -w
 $ npx tsc -w
 $ npx nodemon lib/server.js
 ```

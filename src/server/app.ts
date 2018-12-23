@@ -1,6 +1,7 @@
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-import cookieSession = require('cookie-session');
+// @ts-ignore
+import * as cookieSession from 'cookie-session';
 import * as crypto from 'crypto';
 import * as express from 'express';
 import * as path from 'path';

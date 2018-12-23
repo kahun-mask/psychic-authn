@@ -16,9 +16,10 @@ spaRouter.get('*', (req: Request, res: Response) => {
       <title>psychic authn</title>
     </head>
     <body>
-      <div id="app"></div>
+      <div id="app">
+      </div>
       <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.1/webcomponents-loader.js"></script>
-      <script src="/static/web-authn-utils.js"></script>
+      <script src="/static/app.js"></script>
     </body>
   </html>
   `);

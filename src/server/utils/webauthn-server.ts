@@ -198,8 +198,6 @@ export const verifyAuthenticatorAttestationResponse = (
       throw new Error('User was NOT presented durring authentication');
     }
 
-    console.log(authrDataStruct);
-
     const clientDataHash = hash(base64url.toBuffer(
       webAuthnResponse.response.clientDataJSON,
     ));
@@ -226,7 +224,7 @@ export const verifyAuthenticatorAttestationResponse = (
       response.authrInfo = {
         counter: authrDataStruct.counter,
         credID: base64url.encode(authrDataStruct.credID),
-        fmt: 'fido-u2f',
+        fmt: 'packed',
         publicKey: base64url.encode(publicKey),
       };
     }
@@ -271,7 +269,7 @@ export const verifyAuthenticatorAssertionResponse = (
     webAuthnResponse.response.authenticatorData,
   );
 
-  const response: any = { verifined: false };
+  const response: any = { verified: false };
   if (authr.fmt === 'packed') {
     const authrDataStruct = parseAssertionAuthData(authenticatorData);
     if (!(authrDataStruct.flags & U2F_USER_PRESENTED)) {
@@ -286,10 +284,11 @@ export const verifyAuthenticatorAssertionResponse = (
       authrDataStruct.counterBuf,
       clientDataHash,
     ]);
-    const publicKey = ASN1toPEM(base64url.toBuffer(authr.publickKey));
+    const publicKey = ASN1toPEM(base64url.toBuffer(authr.publicKey));
     const signature = base64url.toBuffer(webAuthnResponse.response.signature);
-    response.verifined = verifySignature(signature, signatureBase, publicKey);
-    if (response.verifined) {
+
+    response.verified = verifySignature(signature, signatureBase, publicKey);
+    if (response.verified) {
       if (response.counter <= authr.counter) {
         throw new Error('Authr counter did not increase');
       }
