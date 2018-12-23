@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node lib/server.js",
+    "postinstall": "npm run build",
     "build": "npm run build:es && npm run build:js",
     "build:es": "tsc -p tsconfig.json",
     "build:js": "webpack -p",

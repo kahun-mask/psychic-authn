@@ -14,6 +14,8 @@ import {
   verifyAuthenticatorAttestationResponse,
 } from '../utils/webauthn-server';
 
+const HTTP_ORIGIN = process.env.HTTP_ORIGIN || 'http://localhost:3000';
+
 export const webauthnRouter = Router();
 
 webauthnRouter.post('/register/request', (req: Request, res: Response) => {
@@ -75,7 +77,7 @@ webauthnRouter.post('/register/response', (req: Request, res: Response) => {
     return;
   }
 
-  if (clientData.origin !== 'http://localhost:3000') {
+  if (clientData.origin !== HTTP_ORIGIN) {
     res.status(400).send('Invalid origin');
     return;
   }
@@ -144,7 +146,7 @@ webauthnRouter.post('/login/response', (req: Request, res: Response) => {
     return;
   }
 
-  if (clientData.origin !== 'http://localhost:3000') {
+  if (clientData.origin !== HTTP_ORIGIN) {
     res.status(400).send('Invalid origin');
     return;
   }
