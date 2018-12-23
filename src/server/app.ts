@@ -8,7 +8,8 @@ import * as path from 'path';
 import { spaRouter } from './router/spaRouter';
 import { webauthnRouter } from './router/webauthnRouter';
 
-const app = express();
+const PORT = process.env.PORT || 3000;
+export const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieSession({
@@ -22,6 +23,6 @@ app.use('/static', express.static(path.join(__dirname, '../../static')));
 app.use('/webauthn', webauthnRouter);
 app.use('*', spaRouter);
 
-app.listen(3000, () => {
-  console.log(`listen port 3000`);
+app.listen(PORT, () => {
+  console.log(`listen port ${PORT}`);
 });
