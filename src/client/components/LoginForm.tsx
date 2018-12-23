@@ -50,16 +50,22 @@ export class LoginForm extends React.Component<{}, State> {
       username,
     } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="username">
+      <form onSubmit={this.handleSubmit} className="Form">
+        <label htmlFor="username" className="Form_label">
           username:
-          <input type="text" name="username" value={username} onChange={(e) => {
-            this.setState({
-              username: e.target.value,
-            });
-          }} />
+          <input
+            className="Form_input"
+            type="text"
+            name="username"
+            value={username}
+            onChange={(e) => {
+              this.setState({
+                username: e.target.value,
+              });
+            }}
+          />
         </label>
-        <input type="submit" value="sign in" />
+        <input type="submit" value="sign in" className="Form_submit" />
       </form>
     );
   }

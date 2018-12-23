@@ -60,10 +60,11 @@ export class RegisterForm extends React.Component<{}, State> {
       username,
     } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">
+      <form onSubmit={this.handleSubmit} className="Form">
+        <label htmlFor="name" className="Form_label">
           name:
           <input
+            className="Form_input"
             type="text"
             name="name"
             value={name}
@@ -75,9 +76,10 @@ export class RegisterForm extends React.Component<{}, State> {
             }}
           />
         </label>
-        <label htmlFor="username">
+        <label htmlFor="username" className="Form_label">
           username:
           <input
+            className="Form_input"
             type="text"
             name="username"
             value={username}
@@ -89,7 +91,7 @@ export class RegisterForm extends React.Component<{}, State> {
             }}
           />
         </label>
-        <input type="submit" value="sign up" />
+        <input type="submit" value="sign up" className="Form_submit" />
       </form>
     );
   }
